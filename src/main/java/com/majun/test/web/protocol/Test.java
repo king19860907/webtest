@@ -22,7 +22,7 @@ public class Test {
 			UserBuf.User newUser = UserBuf.User.newBuilder().build().parseFrom(bytes);
 			System.out.println("反序列化后结果:"+newUser);
 		} catch (InvalidProtocolBufferException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block 
 			e.printStackTrace();
 		}
 	}
