@@ -23,7 +23,7 @@ public class Test {
 			System.out.println("反序列化后结果:"+newUser);
 		} catch (InvalidProtocolBufferException e) {
 			// TODO Auto-generated catch block 
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 	
