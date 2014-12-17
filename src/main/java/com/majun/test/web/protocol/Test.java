@@ -10,7 +10,7 @@ public class Test {
 		//为类赋值
 		Builder userBulider = UserBuf.User.newBuilder();
 		userBulider.setUserId(10001);
-		userBulider.setUserName("majun");
+		userBulider.setUserName("majun"); 
 		
 		//序列化
 		UserBuf.User user = userBulider.build();
