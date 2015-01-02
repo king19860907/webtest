@@ -1,5 +1,6 @@
 package com.majun.test.web.security;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -74,12 +75,19 @@ public class RSA {
 	 * @throws Exception
 	 */
 	public static String encrypt(String source) throws Exception {
-		generateKeyPair();
+		return encrypt(source, PUBLIC_KEY_FILE);
+	}
+	
+	public static String encrypt(String source,String keyPath) throws Exception {
 		Key publicKey;
 		ObjectInputStream ois = null;
 		try {
+			File file = new File(keyPath);
+			if(!file.exists()){
+				generateKeyPair();
+			}
 			/** 将文件中的公钥对象读出 */
-			ois = new ObjectInputStream(new FileInputStream(PUBLIC_KEY_FILE));
+			ois = new ObjectInputStream(new FileInputStream(keyPath));
 			publicKey = (Key) ois.readObject();
 		} catch (Exception e) {
 			throw e;
@@ -106,14 +114,19 @@ public class RSA {
 	 * @throws Exception
 	 */
 	public static String decrypt(String cryptograph) throws Exception {
+		return decrypt(cryptograph, PRIVATE_KEY_FILE);
+	}
+	
+	public static String decrypt(String cryptograph,String keyPath) throws Exception {
 		Key privateKey;
 		ObjectInputStream ois = null;
 		try {
 			/** 将文件中的私钥对象读出 */
-			ois = new ObjectInputStream(new FileInputStream(PRIVATE_KEY_FILE));
+			ois = new ObjectInputStream(new FileInputStream(keyPath));
 			privateKey = (Key) ois.readObject();
 		} catch (Exception e) {
-			throw e;
+			e.printStackTrace();
+			return null;
 		} finally {
 			ois.close();
 		}
