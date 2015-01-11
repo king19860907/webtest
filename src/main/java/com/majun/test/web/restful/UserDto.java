@@ -28,4 +28,10 @@ public class UserDto implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	@Override
+	public String toString() {
+		return "UserDto [userId=" + userId + ", userName=" + userName + "]";
+	}
+	
 }
